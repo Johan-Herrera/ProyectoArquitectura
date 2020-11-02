@@ -1,0 +1,30 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+Identificacion de la mascota 
+<p><input type="text" value={{ID_Mascota}} id="ID_Mascota"/> 
+
+<div id="info">
+   Identificacion del propietario
+<p><input type="text" readonly="readonly" value={{ID_Cliente}} id="ID_Cliente"/>
+<p></p>
+   Nombre 
+<p><input type="text" readonly="readonly" value={{Nombre_Mascota}} id="Nombre_Mascota"/></p>
+   Edad 
+<p><input type="text" readonly="readonly"  value={{Edad_Mascota}} id="Edad_Mascota"/></p>
+<p></p>
+   Raza 
+<p><input type="text" readonly="readonly" value={{Raza_Mascota}} id="Raza_Mascota"/></p>
+   Ultima Vacuna
+<p><input type="text" readonly="readonly"  value={{Vacuna_Hecha}} id="Vacuna_Hecha"/></p>
+<p></p>
+   Proxima Vacuna
+<p><input type="text" readonly="readonly" value={{Fecha_Vacuna}} id="Fecha_Vacuna"/></p>
+   Patologia
+<p><textarea name="textarea" rows="10" id="Patologia_Mascota" cols="50">{{Patologia_Mascota}}</textarea></p>
+</div>
+</body>
+
