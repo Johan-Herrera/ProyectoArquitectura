@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<div id="inicio">
+<input type="button" class="btn btn-primary" value="Ingresar como usuario" id="btn_ingreso" name="btn_ingreso">
+<input type="button" value="Registrarse" class="btn btn-light" id="btn_registro">
+</div>
+<div id="registro" style="display: none;">>
+<form action="cgi-bin/test.py" method="GET">
+<p>Ingrese su cedula:    
+<input type="text" name="id" id="id"/> </p>
+<p>Ingrese su Nombre:
+<input type="text" name="nombre" id="nombre"/></p>
+<p>Ingrese su Apellido:
+<input type="text" name="apellido" id="apellido"/></p>
+<p>Ingrese su email:
+<input type="text" name="email" id="email"/></p>
+<p>Ingrese su Telefono:
+<input type="text" name="tel" id="tel"/></p>
+<p>Ingrese su Clave:
+<input type="text" name="clave" id="clave"/></p>
+<p></p>
+<input type="submit" value="enviar" onclick="f()" />
+</form>
+</div>
+</div>
+<script>
+$( "#btn_registro" ).click(function() {
+  $("#inicio").hide(0);
+  $("#registro").show(0);
+});
+</script>
+</body>
+</html>
