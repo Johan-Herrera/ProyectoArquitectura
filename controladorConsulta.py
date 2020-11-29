@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 from jinja2 import Template
 import mysql.connector
 from mysql.connector import errorcode
@@ -8,6 +8,7 @@ datos=cgi.FieldStorage()
 print('Content-Type: text/html')
 print('')
 try:
+  idc=None
   datos=cgi.FieldStorage()
   cnx = mysql.connector.connect(user='johan', password = 'johan0123', database='ejemplo', host='127.0.0.1')
   cursor=cnx.cursor()
@@ -28,9 +29,8 @@ try:
        		 template = Template(doc)
        		 page = template.render(ID_Mascota=idm, ID_Cliente=idc, Nombre_Mascota=nombre, Edad_Mascota=edad, Raza_Mascota=raza, Patologia_Mascota=pato,Vacuna_Hecha=vh, Fecha_Vacuna=fv)
        		 print(page)
-  if(idc==None):
-          print("Has ingresado una Identificacion Inexustente")
-
+  else:
+         print("Has ingresado una Identificacion Inexistente")
   cnx.close()
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:

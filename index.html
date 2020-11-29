@@ -10,7 +10,7 @@
 <input type="button" class="btn btn-primary" value="Ingresar como usuario" id="btn_ingreso" name="btn_ingreso">
 <input type="button" value="Registrarse" class="btn btn-light" id="btn_registro">
 </div>
-<div id="registro" style="display: none;">>
+<div id="registro" style="display: none;">
 <form action="cgi-bin/test.py" method="GET">
 <p>Ingrese su cedula:    
 <input type="text" name="id" id="id"/> </p>
@@ -29,7 +29,21 @@
 </form>
 </div>
 </div>
+<div id="ingreso" style="display: none;">
+<form action="cgi-bin/ingreso.py" method="GET">
+<p>Ingrese su id:
+<input type="text" name="id1" id="id1"/></p>
+<p>Ingrese su Clave:
+<input type="text" name="clave1" id="clave1"/></p>
+<input type="submit" value="enviar" onclick="g()" />
+</form>
+
+</div>
 <script>
+$( "#btn_ingreso" ).click(function() {
+  $("#inicio").hide(0);
+  $("#ingreso").show(0);
+});
 $( "#btn_registro" ).click(function() {
   $("#inicio").hide(0);
   $("#registro").show(0);

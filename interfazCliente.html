@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+<div id="inicio">
+<input type="button" class="btn btn-primary" value="Registrar Mascota" id="btn_registrar" name="btn_registrar">
+<input type="button" value="Consultar Informacion De Una Mascota" class="btn btn-primary" id="btn_consultar">
+<input type="button" value="Modificar Informacion De Una Mascota" class="btn btn-primary" id="btn_modificar">
+</div>
+
+<div id="consulta" style="display: none;">
+<form action="controladorConsulta.py" method="GET">
+Identificacion de la mascota
+<p><input type="text" name="ID_Mascota" id="ID_Mascota"/>
+<input type="submit" value="Buscar" id="buscar">
+</form>
+</div>
+
+
+<div id="registro" style="display: none;">
+<form method="POST" action="http://54.152.197.246:5000/crearProductos">
+<p v-if="errors.length">
+    <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+  </p>
+
+<p>Ingrese la Identificacion de la mascota:
+<input v-model="ID_Mascota" type="text" name="id_mascota" id="id_mascota"/> </p>
+<p>Ingrese la Identificacion del propietario:
+<input type="text" name="id" id="id"/> </p>
+<p>Ingrese el Nombre de la mascota:
+<input type="text" name="nombre" id="nombre"/></p>
+<p>Ingrese la edad de la mascota:
+<input type="text" name="edad" id="edad"/></p>
+<p>Ingrese la raza de la mascota:
+<input type="text" name="raza" id="raza"/></p>
+<p>Ingrese las patologias de la mascota(si presenta alguna):
+<input type="text" name="patologia" id="patologia"/></p>
+<p>Ingrese la ultima fecha de vacunacion de la mascota(dd-mm-aaaa):
+<input type="text" name="fechaH" id="fechaH"/></p>
+<p>Ingrese la proxima fecha de vacunacion de la mascota(dd-mm-aaaa):
+<input type="text" name="fechaP" id="fechaP"/></p>
+<p></p>
+<button v-on:click="fi" >Aceptar</button>
+</form>
+</div>
+
+<div style="display: none;" id="actualizarMascota">
+<form action="controladorConsulta.py" method="GET">
+Identificacion de la mascota
+<p><input type="text" name="ID_Mascota" id="ID_Mascota1"/>
+<input type="submit" value="Buscar" id="buscar1">
+</form>
+</div>
+
+<script>
+var botonReg= document.querySelector("botonReg");
+
+$( "#btn_registrar" ).click(function() {
+  $("#inicio").hide(0);
+  $("#registro").show(0);
+});
+$( "#btn_consultar" ).click(function() {
+  $("#inicio").hide(0);
+  $("#consulta").show(0);
+});
+$( "#btn_modificar" ).click(function() {
+  $("#inicio").hide(0);
+  $("#actualizarMascota").show(0);
+});
+
+var registro = new Vue(
+{
+    el: '#registro',
+    data: {
+       errors: [],
+       ID_Mascota:null,
+       ID_Cliente:null,
+       Nombre_Mascota:null,
+       Edad_Mascota:null,
+       Raza_Mascota:null,
+       Patologia_Mascota:null,
+       Vacuna_Hecha:null,
+       Fecha_Vacuna:null
+    },
+    methods: {
+     
+     fi:function(){
+	let post = {
+        ID_Mascota:this.ID_Mascota,
+        ID_Cliente:this.ID_Cliente,
+        Nombre_Mascota:this.Nombre_Mascota,
+        Edad_Mascota:this.Edad_Mascota,
+        Raza_Mascota:this.Raza_Mascota,
+        Patologia_Mascota:this.Patologia_Mascota,
+        Vacuna_Hecha:this.Vacuna_Hecha,
+        Fecha_Vacuna:this.Fecha_Vacuna
+
+        };
+	axios.post("http://54.152.197.246:5000/crearProductos", post).then((result) => {
+        console.log(result);
+        });	
+     }
+     
+    }
+  } 
+)
+
+</script>
+
+
+</body>
+</html>

@@ -1,30 +1,82 @@
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
 <body>
-Identificacion de la mascota 
-<p><input type="text" value={{ID_Mascota}} id="ID_Mascota"/> 
-
 <div id="info">
+<form action="http://54.152.197.246:5000/modificarProductos" method="POST">
+<p v-if="errors.length">
+    <b>Por favor, corrija el(los) siguiente(s) error(es):</b>
+    <ul>
+      <li v-for="error in errors">{{ error }}</li>
+    </ul>
+</p>
+
+<p>Identificacion de la mascota</p>
+<input id="ID_Mascota" name="ID_Mascota" value={{ID_Mascota}}  readonly="readonly"/><p></p>
    Identificacion del propietario
-<p><input type="text" readonly="readonly" value={{ID_Cliente}} id="ID_Cliente"/>
+<p><input type="text"  value={{ID_Cliente}} name="ID_Cliente" id="ID_Cliente"/>
 <p></p>
-   Nombre 
-<p><input type="text" readonly="readonly" value={{Nombre_Mascota}} id="Nombre_Mascota"/></p>
-   Edad 
-<p><input type="text" readonly="readonly"  value={{Edad_Mascota}} id="Edad_Mascota"/></p>
+   Nombre
+<p><input  type="text"  value={{Nombre_Mascota}} name="Nombre_Mascota" id="Nombre_Mascota"/></p>
+   Edad
+<p><input type="text"  value={{Edad_Mascota}} name="Edad_Mascota" id="Edad_Mascota"/></p>
 <p></p>
-   Raza 
-<p><input type="text" readonly="readonly" value={{Raza_Mascota}} id="Raza_Mascota"/></p>
+   Raza
+<p><input  type="text" value={{Raza_Mascota}} name="Raza_Mascota" id="Raza_Mascota"/></p>
    Ultima Vacuna
-<p><input type="text" readonly="readonly"  value={{Vacuna_Hecha}} id="Vacuna_Hecha"/></p>
+<p><input  type="text"  value={{Vacuna_Hecha}} name="Vacuna_Hecha" id="Vacuna_Hecha"/></p>
 <p></p>
    Proxima Vacuna
-<p><input type="text" readonly="readonly" value={{Fecha_Vacuna}} id="Fecha_Vacuna"/></p>
+<p><input  type="text" value={{Fecha_Vacuna}} name="Fecha_Vacuna" id="Fecha_Vacuna"/></p>
    Patologia
-<p><textarea name="textarea" rows="10" id="Patologia_Mascota" cols="50">{{Patologia_Mascota}}</textarea></p>
+<p><textarea  type="text" value={{"Patologia_Mascota"}} name="Patologia_Mascota" rows="10" id="Patologia_Mascota" cols="50">{{Patologia_Mascota}}</textarea></p>
+<p></p>
+<button v-on:click="fo" >Actualizar Informacion</button>
+</form>
 </div>
-</body>
 
+<script>
+var modificar = new Vue(
+{
+    el: '#info',
+    data: {
+       errors:[],
+       ID_Mascota:null,
+       ID_Cliente:null,
+       Nombre_Mascota:null,
+       Edad_Mascota:null,
+       Raza_Mascota:null,
+       Patologia_Mascota:null,
+       Vacuna_Hecha:null,
+       Fecha_Vacuna:null
+    },
+    methods: {
+
+     fo:function(){
+	let post = {
+        ID_Mascota:this.ID_Mascota,
+        ID_Cliente:this.ID_Cliente,
+        Nombre_Mascota:this.Nombre_Mascota,
+        Edad_Mascota:this.Edad_Mascota,
+        Raza_Mascota:this.Raza_Mascota,
+        Patologia_Mascota:this.Patologia_Mascota,
+        Vacuna_Hecha:this.Vacuna_Hecha,
+        Fecha_Vacuna:this.Fecha_Vacuna
+	};
+	
+        axios.post("http://54.152.197.246:5000/modificarProductos",post).then((result) => {
+        });
+
+     }
+
+    }
+  }
+)
+
+</script>
+
+</body>
+</html>

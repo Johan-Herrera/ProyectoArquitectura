@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 from jinja2 import Template
 import mysql.connector
 from mysql.connector import errorcode
@@ -35,9 +35,6 @@ except mysql.connector.Error as err:
   elif err.errno == errorcode.ER_BAD_DB_ERROR:
     print("Database does not exist")
   else:
-    print(err)
+    print("Se ingreso un id ya existente")
 else:
     cnx.close()
-
-
-
