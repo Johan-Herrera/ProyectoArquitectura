@@ -93,8 +93,8 @@ var registro = new Vue(
     },
     methods: {
      
-     fi:function(){
-	let post = {
+     fi:function(){   //Se crea la funcion que hara el POST al server
+	let post = {  //Se crea un objeto que guardara todos los datos del formulario del HTML
         ID_Mascota:this.ID_Mascota,
         ID_Cliente:this.ID_Cliente,
         Nombre_Mascota:this.Nombre_Mascota,
@@ -105,7 +105,7 @@ var registro = new Vue(
         Fecha_Vacuna:this.Fecha_Vacuna
 
         };
-	axios.post("http://54.152.197.246:5000/crearProductos", post).then((result) => {
+	axios.post("http://54.152.197.246:5000/crearProductos", post).then((result) => {   //Se hace POST al server hecho con FLASK
         console.log(result);
         });	
      }
