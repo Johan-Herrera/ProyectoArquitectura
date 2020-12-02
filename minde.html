@@ -55,8 +55,8 @@ var modificar = new Vue(
     },
     methods: {
 
-     fo:function(){
-	let post = {
+     fo:function(){  //Se crea la funcion encargada de hacer el POST al server
+	let post = {  //Se crea un objeto que guardara la informacion contenida en el formulario HTML
         ID_Mascota:this.ID_Mascota,
         ID_Cliente:this.ID_Cliente,
         Nombre_Mascota:this.Nombre_Mascota,
@@ -67,7 +67,7 @@ var modificar = new Vue(
         Fecha_Vacuna:this.Fecha_Vacuna
 	};
 	
-        axios.post("http://54.152.197.246:5000/modificarProductos",post).then((result) => {
+        axios.post("http://54.152.197.246:5000/modificarProductos",post).then((result) => {   //Se hace POST al servidor FLASK
         });
 
      }
